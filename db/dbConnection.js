@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017";
+const URI = process.env.MONGO_URI;
 const DB_NAME = "quickpik";
 
 let client;
@@ -19,4 +19,9 @@ async function connectDB() {
   return db;
 }
 
-export default connectDB;
+async function getCollection(name) {
+  const database = await connectDB();
+  return database.collection(name);
+}
+
+export { connectDB, getCollection };
