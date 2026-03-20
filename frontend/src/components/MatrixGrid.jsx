@@ -1,5 +1,8 @@
 import Table from "react-bootstrap/Table";
 
+// Peer review: Consider adding keyboard navigation (arrow keys to select/deselect cells) and ARIA labels (aria-label, aria-checked) to the matrix grid. This will improve accessibility for users with different input methods and screen readers. Also consider testing the heatmap color scheme for colorblind accessibility.
+
+
 export default function MatrixGrid({
   rows,
   columns,
