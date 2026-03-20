@@ -59,7 +59,7 @@ export default function HomePage({ navigate }) {
               onChange={e => setJoinId(e.target.value)}
               placeholder="Paste Poll ID here" />
             {joinError && <Alert variant="danger" className="py-2 mb-2">{joinError}</Alert>}
-            <Button variant="primary" className="w-100" onClick={handleJoin}>Join Poll</Button>
+            <Button variant="success" className="w-100" onClick={handleJoin}>Join Poll</Button>
           </Card>
         </Col>
       </Row>
