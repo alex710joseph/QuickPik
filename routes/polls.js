@@ -4,6 +4,8 @@ import { ObjectId } from "mongodb";
 
 const router = express.Router();
 
+// Peer review: Great API endpoint organization. The separation of polls creation/management from submissions and voting improves maintainability. Consider adding database indexing on frequently queried fields (e.g., poll_id, user_id) for faster heatmap aggregation queries at scale.
+
 // Middleware - check if user is logged in, otherwise return 401 error
 function requireAuth(req, res, next) {
   if (!req.session.user)
