@@ -19,7 +19,7 @@ In real-world group decisions — picking a restaurant, scheduling a meeting, pr
 | Deployed Application | |
 | Youtube Walkthrough | |
 | Design Document |  |
-| Slide Deck |  |
+| Slide Deck | https://docs.google.com/presentation/d/17xqsvmVP7bAJJ5PQ1Jmx8r3SgIDZGLjNGViHeShNe4w/edit?usp=sharing |
 
 
 ---
