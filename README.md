@@ -55,12 +55,17 @@ The Vite dev server starts on **http://localhost:5173** and proxies API calls to
 
 ## Test Credentials
 
-Use these dummy accounts to explore the application as a reviewer or tester:
+There are 1000 user records registered into the mongo atlas database. From these 1000 users, there are multiple users who have created polls having 1000 votes. Use these account logins to explore the application as a reviewer or tester. Kindly note that users - `lleversha7` and `bgoninga` have polls containg 1000 votes, so you can visualize the result visualization of the heatmap on a large number of users. The process on how the data for submitting 1000 votes on these polls is explained in the `Synthetic Data Generation` section of this README.
 
-| Role | Username | Password |
-|---|---|---|
-| Poll Creator | `jdockray0` | `cbkno86` |
-| Participant | `` | `` |
+| Username | Password |
+| ---|---|
+| `jdockray0` | `cbkno86` |
+| `tmalin1` | `owrfp73` |
+| `rvairow2` | `lloly42` |
+| `hizzard9` | `ngonh35` |
+| `bgoninga` | `bhrqm91` |
+| `acatlin1v` | `ecmoh87` |
+| `lleversha7` | `yzpzq00` |
 
 ---
 
@@ -154,6 +159,11 @@ This project was developed with assistance from **Claude (Anthropic)** via Claud
 - Refining this README
 
 All AI-generated code was reviewed, tested, and integrated by the team members.
+
+---
+
+## Synthetic Data Generation
+A python script was created that iterates over all the 1000 users generated via mockaroo and with each user, a submission record is created for a specified poll id. The code used can be found under /synthetic_data_generation
 
 ---
 
