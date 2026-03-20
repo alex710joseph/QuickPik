@@ -176,3 +176,10 @@ A python script was created that iterates over all the 1000 users generated via 
 - **Rajiv Philip** — Participant Input & Results Visualization
 
 *Course project supervised by John Alexis Guerra Gomez.*
+
+
+---
+
+### 📝 Peer Review Note (CS 5610)
+
+This fork was created for a CS 5610 peer review. Excellent project execution! The matrix-based heatmap visualization for group decisions is intuitive and solves a real UX problem. I particularly appreciated: (1) the React + Vite frontend with Bootstrap 5 for clean, responsive UI, (2) the synthetic data generation script (1000+ test records) showing attention to scalability testing, and (3) the clear separation of concerns between Matrix Creation (Alex) and Participant Input/Visualization (Rajiv). The use of native MongoDB driver and express-session adds architectural depth.
