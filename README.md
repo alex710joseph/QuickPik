@@ -15,7 +15,7 @@ In real-world group decisions — picking a restaurant, scheduling a meeting, pr
 
 | Resource | Link |
 |---|---|
-| GitHub Repository |  |
+| GitHub Repository | https://github.com/alex710joseph/QuickPik |
 | Deployed Application | |
 | Youtube Walkthrough | |
 | Design Document |  |
@@ -116,19 +116,19 @@ Thus, QuickPik provides a simple but powerful way for groups to visualize collec
 ## Screenshots
 
 ### Login
-![Login Page](frontend/ui_mockups/login.png)
+![Login Page](ui_mockups/login.png)
 
 ### Home — Create & Join a Poll
-![Home Page](frontend/ui_mockups/homepage.png)
+![Home Page](ui_mockups/homepage.png)
 
 ### My Created Polls
-![Review Open Polls](frontend/ui_mockups/ReviewOpenPollsPage.png)
+![Review Open Polls](ui_mockups/ReviewOpenPollsPage.png)
 
 ### Poll Management & Results Heatmap
-![View Poll Page](frontend/ui_mockups/ViewPollPage.png)
+![View Poll Page](ui_mockups/ViewPollPage.png)
 
 ### Vote Page
-![Vote Page](frontend/ui_mockups/VotePage.png)
+![Vote Page](ui_mockups/VotePage.png)
 
 ---
 
