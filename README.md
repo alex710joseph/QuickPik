@@ -12,3 +12,8 @@ Schema design -
 3. add footer
 4. passport authentication
 5. generate a poll consisting of 1000 users
+6. Design Document
+7. README
+8. Presentation Slides
+9. Youtube Video
+10. Thumbnail Image hosted on github pages
