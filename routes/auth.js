@@ -42,4 +42,34 @@ router.get("/me", (req, res) => {
   res.json(req.session.user);
 });
 
+router.post("/signup", async (req, res) => {
+  const { first_name, last_name, username, password } = req.body;
+  if (!first_name || !last_name || !username || !password)
+    return res.status(400).json({ error: "All fields are required" });
+
+  try {
+    const users = await getCollection("users");
+    const existing = await users.findOne({ username });
+    if (existing)
+      return res.status(409).json({ error: "Username already taken" });
+
+    const result = await users.insertOne({
+      first_name,
+      last_name,
+      username,
+      password,
+    });
+    const user = {
+      id: result.insertedId.toString(),
+      username,
+      first_name,
+      last_name,
+    };
+    req.session.user = user;
+    res.json({ message: "Account created", user });
+  } catch (err) {
+    res.status(500).json({ error: err.message || "Internal server error" });
+  }
+});
+
 export default router;

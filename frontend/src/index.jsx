@@ -6,6 +6,7 @@ import ManagePollPage from "./pages/ManagePollPage";
 import VotePage from "./pages/VotePage";
 import HelpPage from "./pages/HelpPage";
 import Footer from "./components/Footer";
+import SignupPage from "./pages/SignupPage";
 
 export default function IndexPage() {
   const [user, setUser] = useState(null);
@@ -83,6 +84,17 @@ export default function IndexPage() {
             onLogin={(u) => {
               setUser(u);
               setPage("home");
+            }}
+            onGoSignup={() => setPage("signup")}
+          />
+        )}
+        {page === "signup" && (
+          <SignupPage
+            onSignup={(u) => {
+              if (u) {
+                setUser(u);
+                setPage("home");
+              } else setPage("login");
             }}
           />
         )}
