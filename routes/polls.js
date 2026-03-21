@@ -6,8 +6,7 @@ const router = express.Router();
 
 // Middleware - check if user is logged in, otherwise return 401 error
 function requireAuth(req, res, next) {
-  if (!req.session.user)
-    return res.status(401).json({ error: "Not logged in" });
+  if (!req.user) return res.status(401).json({ error: "Not logged in" });
   next();
 }
 
@@ -26,7 +25,7 @@ router.post("/", requireAuth, async (req, res) => {
       description: description || "",
       rows,
       columns,
-      creator_id: req.session.user.id,
+      creator_id: req.user.id,
       status: "open",
       created_at: new Date(),
     });
@@ -41,7 +40,7 @@ router.get("/mine", requireAuth, async (req, res) => {
   try {
     const polls = await getCollection("polls");
     const myPolls = await polls
-      .find({ creator_id: req.session.user.id })
+      .find({ creator_id: req.user.id })
       .sort({ created_at: -1 })
       .toArray();
     res.json(myPolls);
@@ -68,7 +67,7 @@ router.patch("/:id/close", requireAuth, async (req, res) => {
     const polls = await getCollection("polls");
     const poll = await polls.findOne({ _id: new ObjectId(req.params.id) });
     if (!poll) return res.status(404).json({ error: "Poll not found" });
-    if (poll.creator_id !== req.session.user.id)
+    if (poll.creator_id !== req.user.id)
       return res.status(403).json({ error: "Not user's poll to close" });
 
     await polls.updateOne(
@@ -88,7 +87,7 @@ router.delete("/:id", requireAuth, async (req, res) => {
     const submissions = await getCollection("submissions");
     const poll = await polls.findOne({ _id: new ObjectId(req.params.id) });
     if (!poll) return res.status(404).json({ error: "Poll not found" });
-    if (poll.creator_id !== req.session.user.id)
+    if (poll.creator_id !== req.user.id)
       return res.status(403).json({ error: "Not user's poll to delete" });
 
     await polls.deleteOne({ _id: new ObjectId(req.params.id) });

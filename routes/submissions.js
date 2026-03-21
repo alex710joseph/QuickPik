@@ -5,8 +5,7 @@ import { ObjectId } from "mongodb";
 const router = express.Router();
 
 function requireAuth(req, res, next) {
-  if (!req.session.user)
-    return res.status(401).json({ error: "Not logged in" });
+  if (!req.user) return res.status(401).json({ error: "Not logged in" });
   next();
 }
 
@@ -24,7 +23,7 @@ router.post("/", requireAuth, async (req, res) => {
       return res.status(400).json({ error: "Poll is closed" });
     const submissions = await getCollection("submissions");
     await submissions.updateOne(
-      { poll_id, user_id: req.session.user.id },
+      { poll_id, user_id: req.user.id },
       {
         $set: { selected_cells, updated_at: new Date() },
         $setOnInsert: { submitted_at: new Date() },
@@ -42,7 +41,7 @@ router.get("/mine/:poll_id", requireAuth, async (req, res) => {
     const submissions = await getCollection("submissions");
     const sub = await submissions.findOne({
       poll_id: req.params.poll_id,
-      user_id: req.session.user.id,
+      user_id: req.user.id,
     });
     res.json(sub || null);
   } catch (err) {
@@ -55,7 +54,7 @@ router.get("/aggregate/:poll_id", requireAuth, async (req, res) => {
     const polls = await getCollection("polls");
     const poll = await polls.findOne({ _id: new ObjectId(req.params.poll_id) });
     if (!poll) return res.status(404).json({ error: "Poll not found" });
-    if (poll.creator_id !== req.session.user.id)
+    if (poll.creator_id !== req.user.id)
       return res.status(403).json({ error: "Not your poll" });
     const submissions = await getCollection("submissions");
     const allSubs = await submissions
@@ -80,7 +79,7 @@ router.delete("/:poll_id", requireAuth, async (req, res) => {
     const submissions = await getCollection("submissions");
     await submissions.deleteOne({
       poll_id: req.params.poll_id,
-      user_id: req.session.user.id,
+      user_id: req.user.id,
     });
     res.json({ message: "Submission removed" });
   } catch (err) {

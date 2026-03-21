@@ -7,6 +7,7 @@ import submissionsRouter from "./routes/submissions.js";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import path from "path";
+import passport from "passport";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,6 +32,8 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 * 24 },
   }),
 );
+
+app.use(passport.authenticate("session"));
 
 app.use("/api/auth", authRouter);
 app.use("/api/polls", pollsRouter);
