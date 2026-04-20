@@ -1,0 +1,32 @@
+.heatmap-cell {
+    transition: background 0.2s ease;
+}
+
+.level-0 {
+    background: #ebedf0;
+}
+
+.level-1 {
+    background: #9be9a8;
+}
+
+.level-2 {
+    background: #45c968;
+}
+
+.level-3 {
+    background: #309f4e;
+}
+
+.level-4 {
+    background: #038b2e;
+}
+
+.heatmap-text {
+    color: #000;
+    font-weight: 500;
+}
+
+.heatmap-text.light {
+    color: #fff;
+}
