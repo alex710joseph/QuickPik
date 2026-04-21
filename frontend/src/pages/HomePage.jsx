@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import {
   Container,
   Row,
@@ -52,49 +53,58 @@ export default function HomePage({ navigate }) {
   }
 
   return (
-    <Container className="py-2">
+    <Container className="py-4">
+      <h2 className="mb-4 fw-bold">Dashboard</h2>
       <Row className="g-4">
         <Col md={6}>
-          <Card className="p-2 h-80 bg-transparent">
-            <h5 className="mb-3">Create a Poll</h5>
-            <PollForm onSubmit={handleCreatePoll} />
+          <Card className="p-4 h-80 bg-light shadow-sm">
+            <Card.Header className="bg-primary text-white px-0 pb-2 border-0">
+              <h5 className="mb-0">Create a Poll</h5>
+            </Card.Header>
+            <Card.Body className="px-0 pt-3">
+              <PollForm onSubmit={handleCreatePoll} />
+            </Card.Body>
           </Card>
         </Col>
 
         <Col md={6}>
-          <Card className="p-4 h-80 bg-transparent">
-            <h5 className="mb-3">Participate in a Poll</h5>
-            <p className="text-muted">Enter the Poll ID shared with you:</p>
-            <Form.Control
-              className="mb-2"
-              value={joinId}
-              onChange={(e) => setJoinId(e.target.value)}
-              placeholder="Paste Poll ID here"
-            />
-            {joinError && (
-              <Alert variant="danger" className="py-2 mb-2">
-                {joinError}
-              </Alert>
-            )}
-            <Button variant="success" className="w-100" onClick={handleJoin}>
-              Join Poll
-            </Button>
+          <Card className="p-4 h-80 bg-light shadow-sm">
+            <Card.Header className="bg-success text-white px-0 pb-2 border-0">
+              <h5 className="mb-0">Participate in a Poll</h5>
+            </Card.Header>
+            <Card.Body className="px-0 pt-3">
+              <p className="text-muted mb-3">Enter the Poll ID shared with you:</p>
+              <Form.Control
+                className="mb-3"
+                value={joinId}
+                onChange={(e) => setJoinId(e.target.value)}
+                placeholder="Paste Poll ID here"
+              />
+              {joinError && (
+                <Alert variant="danger" className="py-2 mb-3">
+                  {joinError}
+                </Alert>
+              )}
+              <Button variant="success" className="w-100" onClick={handleJoin}>
+                Join Poll
+              </Button>
+            </Card.Body>
           </Card>
         </Col>
       </Row>
 
-      <Row className="mt-2">
+      <Row className="mt-4">
         <Col className="text-center">
-          <Button variant="outline-primary" onClick={loadMyPolls}>
+          <Button variant="outline-primary" onClick={loadMyPolls} size="lg">
             {showPolls ? "Refresh My Polls" : "View My Created Polls"}
           </Button>
         </Col>
       </Row>
 
       {showPolls && (
-        <Row className="mt-3">
+        <Row className="mt-4">
           <Col>
-            <h5>My Polls</h5>
+            <h4 className="mb-3 fw-bold">My Polls</h4>
             {myPolls.length === 0 ? (
               <p className="text-muted">You haven't created any polls yet.</p>
             ) : (
@@ -103,7 +113,7 @@ export default function HomePage({ navigate }) {
                   <ListGroup.Item className="bg-light" key={p._id}>
                     <Row className="align-items-center">
                       <Col>
-                        <strong>{p.title}</strong>
+                        <strong className="h6">{p.title}</strong>
                         <Badge
                           bg={p.status === "open" ? "success" : "secondary"}
                           className="ms-2"
@@ -145,3 +155,7 @@ export default function HomePage({ navigate }) {
     </Container>
   );
 }
+
+HomePage.propTypes = {
+  navigate: PropTypes.func.isRequired,
+};

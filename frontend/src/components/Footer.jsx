@@ -1,4 +1,6 @@
-export default function Footer() {
+import PropTypes from 'prop-types';
+
+function Footer() {
   return (
     <footer className="bg-dark text-secondary text-center py-3 mt-1">
       <small>
@@ -8,3 +10,7 @@ export default function Footer() {
     </footer>
   );
 }
+
+Footer.propTypes = {};
+
+export default Footer;

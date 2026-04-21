@@ -1,6 +1,7 @@
 import Table from "react-bootstrap/Table";
+import PropTypes from 'prop-types';
 
-export default function MatrixGrid({
+function MatrixGrid({
   rows,
   columns,
   cells,
@@ -15,41 +16,63 @@ export default function MatrixGrid({
   }
 
   return (
-    <Table bordered responsive className="text-center align-middle">
-      <thead className="table-dark">
-        <tr>
-          <th></th>
-          {columns.map((col, c) => (
-            <th key={c}>{col}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row, r) => (
-          <tr key={r}>
-            <td className="fw-semibold text-start">{row}</td>
-            {columns.map((_, c) => (
-              <td
-                key={c}
-                onClick={() => toggle(r, c)}
-                style={{
-                  cursor: disabled ? "default" : "pointer",
-                  background: cells[r][c] ? "#0d6efd22" : "",
-                }}
-              >
-                <input
-                  type="checkbox"
-                  checked={cells[r][c]}
-                  onChange={() => toggle(r, c)}
-                  disabled={disabled}
-                  className="form-check-input"
-                  style={{ pointerEvents: "none" }}
-                />
-              </td>
+    <div className="table-responsive">
+      <Table bordered responsive className="text-center align-middle">
+        <thead className="table-dark">
+          <tr>
+            <th className="fw-bold" style={{ minWidth: "120px" }}></th>
+            {columns.map((col, c) => (
+              <th key={c} className="fw-bold" style={{ minWidth: "100px" }}>
+                {col}
+              </th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </Table>
+        </thead>
+        <tbody>
+          {rows.map((row, r) => (
+            <tr key={r}>
+              <td className="fw-bold text-start" style={{ minWidth: "120px" }}>
+                {row}
+              </td>
+              {columns.map((_, c) => (
+                <td
+                  key={c}
+                  onClick={() => toggle(r, c)}
+                  style={{
+                    cursor: disabled ? "default" : "pointer",
+                    background: cells[r][c] ? "#0d6efd22" : "",
+                    padding: "0.75rem",
+                    minWidth: "100px",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={cells[r][c]}
+                    onChange={() => toggle(r, c)}
+                    disabled={disabled}
+                    className="form-check-input"
+                    style={{ pointerEvents: "none", cursor: disabled ? "default" : "pointer" }}
+                  />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
   );
 }
+
+MatrixGrid.propTypes = {
+  rows: PropTypes.arrayOf(PropTypes.string).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.string).isRequired,
+  cells: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.bool)).isRequired,
+  onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+};
+
+MatrixGrid.defaultProps = {
+  disabled: false,
+};
+
+export default MatrixGrid;
