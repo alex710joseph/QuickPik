@@ -64,8 +64,9 @@ export default function PollForm({ onSubmit }) {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Description (optional)</Form.Label>
+        <Form.Label for="description">Description (optional)</Form.Label>
         <Form.Control
+          id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />

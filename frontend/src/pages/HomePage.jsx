@@ -117,7 +117,7 @@ export default function HomePage({ navigate }) {
                           <Col xs="auto">
                             <Button
                               size="sm"
-                              variant="outline-primary"
+                              variant="primary"
                               onClick={() => navigate("manage", p._id)}
                             >
                               View
@@ -126,7 +126,7 @@ export default function HomePage({ navigate }) {
                           <Col xs="auto">
                             <Button
                               size="sm"
-                              variant="outline-danger"
+                              variant="danger"
                               onClick={() => deletePoll(p._id)}
                             >
                               Delete
