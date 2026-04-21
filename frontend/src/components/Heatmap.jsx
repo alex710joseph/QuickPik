@@ -1,6 +1,7 @@
 import Table from "react-bootstrap/Table";
+import PropTypes from 'prop-types';
 
-export default function Heatmap({ rows, columns, matrix, total }) {
+function Heatmap({ rows, columns, matrix, total }) {
   const max = Math.max(...matrix.flat(), 1);
 
   function cellColor(count) {
@@ -14,37 +15,63 @@ export default function Heatmap({ rows, columns, matrix, total }) {
 
   return (
     <>
-      <p className="text-muted mb-2">
-        Total responses: <strong>{total}</strong>
-      </p>
-      <Table bordered responsive className="text-center align-middle">
-        <thead className="table-dark">
-          <tr>
-            <th></th>
-            {columns.map((col, c) => (
-              <th key={c}>{col}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, r) => (
-            <tr key={r}>
-              <td className="fw-semibold text-start">{row}</td>
-              {columns.map((_, c) => (
-                <td key={c} style={{ background: cellColor(matrix[r][c]) }}>
-                  <span
-                    style={{
-                      color: matrix[r][c] / max > 0.5 ? "#fff" : "#000",
-                    }}
-                  >
-                    {matrix[r][c]}
-                  </span>
-                </td>
+      <div className="mb-3">
+        <p className="text-muted mb-2">
+          Total responses: <strong>{total}</strong>
+        </p>
+      </div>
+      <div className="table-responsive">
+        <Table bordered responsive className="text-center align-middle">
+          <thead className="table-dark">
+            <tr>
+              <th className="fw-bold" style={{ minWidth: "120px" }}></th>
+              {columns.map((col, c) => (
+                <th key={c} className="fw-bold" style={{ minWidth: "100px" }}>
+                  {col}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {rows.map((row, r) => (
+              <tr key={r}>
+                <td className="fw-bold text-start" style={{ minWidth: "120px" }}>
+                  {row}
+                </td>
+                {columns.map((_, c) => (
+                  <td
+                    key={c}
+                    style={{
+                      background: cellColor(matrix[r][c]),
+                      padding: "0.75rem",
+                      minWidth: "100px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: matrix[r][c] / max > 0.5 ? "#fff" : "#000",
+                        fontWeight: "500",
+                        fontSize: "0.95rem",
+                      }}
+                    >
+                      {matrix[r][c]}
+                    </span>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
     </>
   );
 }
+
+Heatmap.propTypes = {
+  rows: PropTypes.arrayOf(PropTypes.string).isRequired,
+  columns: PropTypes.arrayOf(PropTypes.string).isRequired,
+  matrix: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)).isRequired,
+  total: PropTypes.number.isRequired,
+};
+
+export default Heatmap;

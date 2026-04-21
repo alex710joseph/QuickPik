@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Form, Button, Row, Col, Alert } from "react-bootstrap";
+import PropTypes from 'prop-types';
 
-export default function PollForm({ onSubmit }) {
+function PollForm({ onSubmit }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [rows, setRows] = useState([""]);
@@ -54,8 +55,8 @@ export default function PollForm({ onSubmit }) {
         </Alert>
       )}
 
-      <Form.Group className="mb-3">
-        <Form.Label>Poll Name</Form.Label>
+      <Form.Group className="mb-4">
+        <Form.Label className="fw-bold">Poll Name</Form.Label>
         <Form.Control
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -63,18 +64,19 @@ export default function PollForm({ onSubmit }) {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3">
+      <Form.Group className="mb-4">
         <Form.Label>Description (optional)</Form.Label>
         <Form.Control
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          placeholder="Optional: Add context for voters"
         />
       </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Form.Label className="fw-semibold">Rows</Form.Label>
+      <Form.Group className="mb-4">
+        <Form.Label className="fw-bold">Rows</Form.Label>
         {rows.map((row, i) => (
-          <Row key={i} className="g-2 mb-2">
+          <Row key={i} className="g-2 mb-3">
             <Col>
               <Form.Control
                 value={row}
@@ -100,10 +102,10 @@ export default function PollForm({ onSubmit }) {
         </Button>
       </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Form.Label className="fw-semibold">Columns</Form.Label>
+      <Form.Group className="mb-4">
+        <Form.Label className="fw-bold">Columns</Form.Label>
         {columns.map((col, i) => (
-          <Row key={i} className="g-2 mb-2">
+          <Row key={i} className="g-2 mb-3">
             <Col>
               <Form.Control
                 value={col}
@@ -129,9 +131,15 @@ export default function PollForm({ onSubmit }) {
         </Button>
       </Form.Group>
 
-      <Button variant="primary" className="w-100" onClick={handleSubmit}>
+      <Button variant="primary" className="w-100 py-2 fw-600" size="lg" onClick={handleSubmit}>
         Create Poll
       </Button>
     </>
   );
 }
+
+PollForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
+
+export default PollForm;

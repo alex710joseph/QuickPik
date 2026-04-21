@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Container, Button, Alert, Badge } from "react-bootstrap";
+import PropTypes from 'prop-types';
 import MatrixGrid from "../components/MatrixGrid";
 
-export default function VotePage({ pollId, navigate }) {
+function VotePage({ pollId, navigate }) {
   const [poll, setPoll] = useState(null);
   const [cells, setCells] = useState([]);
   const [submitted, setSubmitted] = useState(false);
@@ -103,3 +104,10 @@ export default function VotePage({ pollId, navigate }) {
     </Container>
   );
 }
+
+VotePage.propTypes = {
+  pollId: PropTypes.string.isRequired,
+  navigate: PropTypes.func.isRequired,
+};
+
+export default VotePage;

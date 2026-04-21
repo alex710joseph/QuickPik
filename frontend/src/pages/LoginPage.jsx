@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import {
   Container,
   Row,
@@ -27,40 +28,39 @@ export default function LoginPage({ onLogin, onGoSignup }) {
   }
 
   return (
-    <Container style={{ minHeight: "100vh" }}>
-      <Row
-        className="justify-content-center align-items-center"
-        style={{ minHeight: "100vh" }}
-      >
+    <Container style={{ minHeight: "100vh" }} className="d-flex align-items-center">
+      <Row className="w-100 justify-content-center">
         <Col xs={12} sm={8} md={5} lg={4}>
-          <Card className="p-4 shadow-sm">
-            <h4 className="mb-4 text-center">QuickPik Login</h4>
+          <Card className="p-5 shadow-lg">
+            <h3 className="mb-4 text-center fw-bold">QuickPik Login</h3>
             {error && (
-              <Alert variant="danger" className="py-2">
+              <Alert variant="danger" className="py-3 mb-4">
                 {error}
               </Alert>
             )}
-            <Form.Group className="mb-3">
-              <Form.Label>Username</Form.Label>
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-500">Username</Form.Label>
               <Form.Control
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+                placeholder="Enter your username"
               />
             </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Password</Form.Label>
+            <Form.Group className="mb-4">
+              <Form.Label className="fw-500">Password</Form.Label>
               <Form.Control
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+                placeholder="Enter your password"
               />
             </Form.Group>
-            <Button variant="primary" className="w-100" onClick={handleLogin}>
+            <Button variant="primary" className="w-100 py-2 fw-600 mb-3" size="lg" onClick={handleLogin}>
               Login
             </Button>
-            <Button variant="link" className="w-100 mt-1" onClick={onGoSignup}>
+            <Button variant="link" className="w-100 text-decoration-none" onClick={onGoSignup}>
               Don't have an account? Sign up
             </Button>
           </Card>
@@ -69,3 +69,8 @@ export default function LoginPage({ onLogin, onGoSignup }) {
     </Container>
   );
 }
+
+LoginPage.propTypes = {
+  onLogin: PropTypes.func.isRequired,
+  onGoSignup: PropTypes.func.isRequired,
+};
