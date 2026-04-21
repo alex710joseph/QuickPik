@@ -78,16 +78,16 @@ export default function ManagePollPage({ pollId, navigate }) {
 
       {poll.description && <p className="text-muted">{poll.description}</p>}
 
-      <Card bg="light" className="p-3 mb-4">
+      <Card className="p-3 mb-4 bg-light">
         <Row className="align-items-center g-2">
           <Col xs="auto">
             <span className="text-muted small">Share this Poll URL:</span>
           </Col>
           <Col>
-            <code>{`${window.location.origin}/poll/${pollId}/vote`}</code>
+            <code className="text-primary-emphasis">{`${window.location.origin}/poll/${pollId}/vote`}</code>
           </Col>
           <Col xs="auto">
-            <Button variant="outline-secondary" size="sm" onClick={copyLink}>
+            <Button variant="dark" size="sm" onClick={copyLink}>
               {copied ? "Copied!" : "Copy"}
             </Button>
           </Col>
