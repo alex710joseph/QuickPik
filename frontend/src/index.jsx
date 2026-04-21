@@ -49,36 +49,35 @@ export default function IndexPage() {
   if (loading) return <Container className="p-4">Loading...</Container>;
 
   return (
-    <main>
-      <div className="d-flex flex-column min-vh-100">
-        {user && (
-          <Navbar bg="dark" variant="dark" className="px-3 mb-3">
-            <Navbar.Brand>QuickPik</Navbar.Brand>
-            <Navbar.Text className="ms-auto me-3">
-              Hi, {user.first_name}
-            </Navbar.Text>
-            <Button
-              className="me-2"
-              variant="outline-light"
-              size="md"
-              onClick={() => navigate("home")}
-            >
-              Home
-            </Button>
-            <Button
-              className="me-2"
-              variant="outline-light"
-              size="md"
-              onClick={() => navigate("help")}
-            >
-              Help
-            </Button>
-            <Button variant="outline-light" size="md" onClick={handleLogout}>
-              Logout
-            </Button>
-          </Navbar>
-        )}
-
+    <div className="d-flex flex-column min-vh-100">
+      {user && (
+        <Navbar bg="dark" variant="dark" className="px-3 mb-3">
+          <Navbar.Brand>QuickPik</Navbar.Brand>
+          <Navbar.Text className="ms-auto me-3">
+            Hi, {user.first_name}
+          </Navbar.Text>
+          <Button
+            className="me-2"
+            variant="outline-light"
+            size="md"
+            onClick={() => navigate("home")}
+          >
+            Home
+          </Button>
+          <Button
+            className="me-2"
+            variant="outline-light"
+            size="md"
+            onClick={() => navigate("help")}
+          >
+            Help
+          </Button>
+          <Button variant="outline-light" size="md" onClick={handleLogout}>
+            Logout
+          </Button>
+        </Navbar>
+      )}
+      <main>
         <div className="flex-grow-1">
           {page === "login" && (
             <LoginPage
@@ -112,9 +111,9 @@ export default function IndexPage() {
           )}
           {page === "help" && <HelpPage navigate={navigate} />}
         </div>
+      </main>
 
-        {user && <Footer />}
-      </div>
-    </main>
+      {user && <Footer />}
+    </div>
   );
 }
