@@ -93,20 +93,22 @@ export default function SignupPage({ onSignup }) {
 
             <Row className="g-2 mb-3">
               <Col>
-                <Form.Label style={{ fontSize: "0.85rem" }}>
+                <Form.Label for="first_name" style={{ fontSize: "0.85rem" }}>
                   First Name
                 </Form.Label>
                 <Form.Control
+                  id="first_name"
                   size="sm"
                   value={form.first_name}
                   onChange={(e) => updateFirstName(e.target.value)}
                 />
               </Col>
               <Col>
-                <Form.Label style={{ fontSize: "0.85rem" }}>
+                <Form.Label for="last_name" style={{ fontSize: "0.85rem" }}>
                   Last Name
                 </Form.Label>
                 <Form.Control
+                  id="last_name"
                   size="sm"
                   value={form.last_name}
                   onChange={(e) => updateLastName(e.target.value)}
@@ -115,8 +117,11 @@ export default function SignupPage({ onSignup }) {
             </Row>
 
             <Form.Group className="mb-3">
-              <Form.Label style={{ fontSize: "0.85rem" }}>Username</Form.Label>
+              <Form.Label for="username" style={{ fontSize: "0.85rem" }}>
+                Username
+              </Form.Label>
               <Form.Control
+                id="username"
                 size="sm"
                 value={form.username}
                 onChange={(e) => updateUsername(e.target.value)}
@@ -124,8 +129,11 @@ export default function SignupPage({ onSignup }) {
             </Form.Group>
 
             <Form.Group className="mb-4">
-              <Form.Label style={{ fontSize: "0.85rem" }}>Password</Form.Label>
+              <Form.Label for="password" style={{ fontSize: "0.85rem" }}>
+                Password
+              </Form.Label>
               <Form.Control
+                id="password"
                 size="sm"
                 type="password"
                 value={form.password}

@@ -41,16 +41,18 @@ export default function LoginPage({ onLogin, onGoSignup }) {
               </Alert>
             )}
             <Form.Group className="mb-3">
-              <Form.Label>Username</Form.Label>
+              <Form.Label for="username">Username</Form.Label>
               <Form.Control
+                id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleLogin()}
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Password</Form.Label>
+              <Form.Label for="password">Password</Form.Label>
               <Form.Control
+                id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
