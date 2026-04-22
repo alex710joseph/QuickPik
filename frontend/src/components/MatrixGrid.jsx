@@ -1,5 +1,6 @@
 import Table from "react-bootstrap/Table";
 import PropTypes from 'prop-types';
+import "../pages/css/MatrixGrid.css";
 
 function MatrixGrid({
   rows,
@@ -18,11 +19,11 @@ function MatrixGrid({
   return (
     <div className="table-responsive">
       <Table bordered responsive className="text-center align-middle">
-        <thead className="table-dark">
+        <thead className="custom-color">
           <tr>
-            <th className="fw-bold" style={{ minWidth: "120px" }}></th>
+            <th className="fw-bold" style={{ minWidth: "120px", background: "#554F4F", color: "#C7BDB0" }}></th>
             {columns.map((col, c) => (
-              <th key={c} className="fw-bold" style={{ minWidth: "100px" }}>
+              <th key={c} className="fw-bold" style={{ minWidth: "100px", background: "#554F4F", color: "#C7BDB0" }}>
                 {col}
               </th>
             ))}
@@ -31,7 +32,7 @@ function MatrixGrid({
         <tbody>
           {rows.map((row, r) => (
             <tr key={r}>
-              <td className="fw-bold text-start" style={{ minWidth: "120px" }}>
+              <td className="fw-bold text-start" style={{ minWidth: "120px", background: "#554F4F", color: "#C7BDB0" }}>
                 {row}
               </td>
               {columns.map((_, c) => (
@@ -40,7 +41,7 @@ function MatrixGrid({
                   onClick={() => toggle(r, c)}
                   style={{
                     cursor: disabled ? "default" : "pointer",
-                    background: cells[r][c] ? "#0d6efd22" : "",
+                    background: cells[r][c] ? "#554F4F" : "",
                     padding: "0.75rem",
                     minWidth: "100px",
                   }}

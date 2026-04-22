@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {
   Container,
   Row,
@@ -10,6 +10,7 @@ import {
   Alert,
 } from "react-bootstrap";
 import Heatmap from "../components/Heatmap";
+import "./css/ManagePollPage.css";
 
 export default function ManagePollPage({ pollId, navigate }) {
   const [poll, setPoll] = useState(null);
@@ -63,7 +64,7 @@ export default function ManagePollPage({ pollId, navigate }) {
       <div className="mb-4">
         <Button
           variant="link"
-          className="ps-0 mb-3 text-decoration-none"
+          className="ps-0 mb-3 text-decoration-none custom-link"
           onClick={() => navigate("home")}
         >
           ← Back to Home
@@ -71,7 +72,10 @@ export default function ManagePollPage({ pollId, navigate }) {
 
         <div className="d-flex align-items-center gap-3 mb-3">
           <h2 className="mb-0 fw-bold">{poll.title}</h2>
-          <Badge bg={poll.status === "open" ? "success" : "secondary"} className="fs-6">
+          <Badge
+            bg={poll.status === "open" ? "success" : "secondary"}
+            className="fs-6"
+          >
             {poll.status}
           </Badge>
         </div>
@@ -79,7 +83,7 @@ export default function ManagePollPage({ pollId, navigate }) {
         {poll.description && <p className="text-muted">{poll.description}</p>}
       </div>
 
-      <Card className="p-3 mb-4 bg-light">
+      <Card className="p-3 mb-4 custom-card">
         <Row className="align-items-center g-2">
           <Col xs="auto">
             <span className="text-muted fw-500">Share this Poll:</span>
@@ -88,7 +92,7 @@ export default function ManagePollPage({ pollId, navigate }) {
             <code className="text-primary-emphasis">{`${window.location.origin}/poll/${pollId}/vote`}</code>
           </Col>
           <Col xs="auto">
-            <Button variant="dark" size="sm" onClick={copyLink}>
+            <Button variant="primary" size="sm" onClick={copyLink}>
               {copied ? "Copied!" : "Copy"}
             </Button>
           </Col>
@@ -96,7 +100,7 @@ export default function ManagePollPage({ pollId, navigate }) {
       </Card>
 
       {poll.status === "open" && (
-        <Button variant="warning" className="mb-4 fw-600" onClick={closePoll}>
+        <Button variant="primary" className="mb-4 fw-600" onClick={closePoll}>
           Close Poll
         </Button>
       )}

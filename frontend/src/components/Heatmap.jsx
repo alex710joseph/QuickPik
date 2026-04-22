@@ -1,5 +1,6 @@
 import Table from "react-bootstrap/Table";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import "../pages/css/Heatmap.css";
 
 function Heatmap({ rows, columns, matrix, total }) {
   const max = Math.max(...matrix.flat(), 1);
@@ -22,11 +23,28 @@ function Heatmap({ rows, columns, matrix, total }) {
       </div>
       <div className="table-responsive">
         <Table bordered responsive className="text-center align-middle">
-          <thead className="table-dark">
+          <thead className="custom-color">
             <tr>
-              <th className="fw-bold" style={{ minWidth: "120px" }}></th>
+              <th
+                className="fw-bold"
+                style={{
+                  minWidth: "120px",
+                  color: "#554F4F",
+                  background: "#EDD8B7",
+                  borderColor: "#554F4F",
+                }}
+              ></th>
               {columns.map((col, c) => (
-                <th key={c} className="fw-bold" style={{ minWidth: "100px" }}>
+                <th
+                  key={c}
+                  className="fw-bold"
+                  style={{
+                    minWidth: "100px",
+                    color: "#554F4F",
+                    background: "#EDD8B7",
+                    borderColor: "#554F4F",
+                  }}
+                >
                   {col}
                 </th>
               ))}
@@ -35,7 +53,15 @@ function Heatmap({ rows, columns, matrix, total }) {
           <tbody>
             {rows.map((row, r) => (
               <tr key={r}>
-                <td className="fw-bold text-start" style={{ minWidth: "120px" }}>
+                <td
+                  className="fw-bold text-start"
+                  style={{
+                    minWidth: "120px",
+                    color: "#554F4F",
+                    background: "#EDD8B7",
+                    borderColor: "#554F4F",
+                  }}
+                >
                   {row}
                 </td>
                 {columns.map((_, c) => (

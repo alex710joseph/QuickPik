@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {
   Container,
   Row,
@@ -58,15 +58,15 @@ export default function HomePage({ navigate }) {
       <h2 className="mb-4 fw-bold">Dashboard</h2>
       <Row className="g-4">
         <Col md={6}>
-          <Card className="p-2 h-80 custom-card">
-            <h5 className="mb-3">Create a Poll</h5>
+          <Card className="p-4 custom-card">
+            <h3 className="mb-3">Create a Poll</h3>
             <PollForm onSubmit={handleCreatePoll} />
           </Card>
         </Col>
 
         <Col md={6}>
-          <Card className="p-4 h-80 custom-card">
-            <h5 className="mb-3">Participate in a Poll</h5>
+          <Card className="p-4 custom-card">
+            <h3 className="mb-3">Participate in a Poll</h3>
             <p className="text-muted">Enter the Poll ID shared with you:</p>
             <Form.Control
               className="mb-2"
@@ -79,7 +79,11 @@ export default function HomePage({ navigate }) {
                 {joinError}
               </Alert>
             )}
-            <Button variant="primary" className="w-100" onClick={handleJoin}>
+            <Button
+              variant="primary"
+              className="mt-3 w-100"
+              onClick={handleJoin}
+            >
               Join Poll
             </Button>
           </Card>
