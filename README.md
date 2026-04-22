@@ -20,7 +20,7 @@ In real-world group decisions — picking a restaurant, scheduling a meeting, pr
 | Youtube Walkthrough | https://www.youtube.com/watch?v=_WbQWqszsSw |
 | Design Document | https://docs.google.com/document/d/15PJ7hYPnCgbzrPUGMwUI_EL6xa5Egc4iQkD8LI8NncM/edit?tab=t.0 |
 | Slide Deck | https://docs.google.com/presentation/d/1x_tRo3nEKv04ydWoXUd_stG40ioY6O40FLqrr1yNKlI/edit?usp=sharing |
-
+| Usability, Design, Accessibility Iteration | https://youtu.be/fswuMBMzhmg |
 
 ---
 
