@@ -2,10 +2,19 @@ body {
   background-color: #EDD8B7;
   background-attachment: fixed;
   min-height: 100vh;
+  font-family: "Roboto Serif", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100,
+    "GRAD" 0;
 }
 
-/* Improve visual hierarchy and typography */
 h1, h2, h3, h4, h5, h6 {
+  font-family: "Cardo", serif;
+  font-weight: 700;
+  font-style: normal;
   font-weight: 600;
   margin-bottom: 0.75rem;
   color: #212529;

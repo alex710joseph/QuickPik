@@ -57,7 +57,7 @@ function PollForm({ onSubmit }) {
       )}
 
       <Form.Group className="mb-4">
-        <Form.Label className="fw-bold">Poll Name</Form.Label>
+        <Form.Label>Poll Name</Form.Label>
         <Form.Control
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -76,7 +76,7 @@ function PollForm({ onSubmit }) {
       </Form.Group>
 
       <Form.Group className="mb-4">
-        <Form.Label className="fw-bold">Rows</Form.Label>
+        <Form.Label>Rows</Form.Label>
         {rows.map((row, i) => (
           <Row key={i} className="g-2 mb-3">
             <Col>
@@ -105,7 +105,7 @@ function PollForm({ onSubmit }) {
       </Form.Group>
 
       <Form.Group className="mb-4">
-        <Form.Label className="fw-bold">Columns</Form.Label>
+        <Form.Label>Columns</Form.Label>
         {columns.map((col, i) => (
           <Row key={i} className="g-2 mb-3">
             <Col>

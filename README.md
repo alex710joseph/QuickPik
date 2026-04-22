@@ -194,6 +194,16 @@ Lighthouse report after fixing all of the above listed issues:
 
 ![alt text](<usability_report_screenshots/Screenshot 2026-04-21 at 4.07.42 AM.png>)
 
+## Color Palette
+We used the Texoma Neutral Palette from color.adobe.com (https://color.adobe.com/Texoma%20Neutral%20Palette-color-theme-8b389284-05c2-4257-8076-4124d7303845). The navbar and footer were colored with #554F4F and the body was colored with the complimentary #EDD8B7:
+
+![alt text](color_palette_and_font_pairing/color_palette.png)
+
+## Typography
+We used the Cardo font family for all the header tags and its matching font family Roboto Serif for the body elements. The font pair was selected from fontpair.co:
+
+![alt text](color_palette_and_font_pairing/font_pair.png)
+
 ## Team
 
 - **Alex Joseph** — Matrix Creation & Management

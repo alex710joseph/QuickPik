@@ -1,5 +1,6 @@
 import { Container, Row, Col, Card } from "react-bootstrap";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import "./css/HelpPage.css";
 
 export default function HelpPage() {
   return (
@@ -15,8 +16,8 @@ export default function HelpPage() {
 
       <Row className="g-4">
         <Col md={6}>
-          <Card className="h-100 shadow-sm">
-            <Card.Header className="bg-primary text-white">
+          <Card className="h-100 shadow-sm custom-card">
+            <Card.Header className="bg-custom-color">
               <strong className="fs-5">For Poll Creators</strong>
             </Card.Header>
             <Card.Body>
@@ -63,8 +64,8 @@ export default function HelpPage() {
         </Col>
 
         <Col md={6}>
-          <Card className="h-100 shadow-sm">
-            <Card.Header className="bg-success text-white">
+          <Card className="h-100 shadow-sm custom-card">
+            <Card.Header className="bg-custom-color">
               <strong className="fs-5">For Participants</strong>
             </Card.Header>
             <Card.Body>
