@@ -4,7 +4,7 @@
     border-radius: 15px;
 }
 
-.bg-custom-color {
+.card-header.bg-custom-color {
   background-color: #554F4F;
   color: #EDD8B7;
 }
