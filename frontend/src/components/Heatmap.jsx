@@ -29,8 +29,8 @@ function Heatmap({ rows, columns, matrix, total }) {
                 className="fw-bold"
                 style={{
                   minWidth: "120px",
+                  background: "#F2E6D8",
                   color: "#554F4F",
-                  background: "#EDD8B7",
                   borderColor: "#554F4F",
                 }}
               ></th>
@@ -40,8 +40,8 @@ function Heatmap({ rows, columns, matrix, total }) {
                   className="fw-bold"
                   style={{
                     minWidth: "100px",
+                    background: "#F2E6D8",
                     color: "#554F4F",
-                    background: "#EDD8B7",
                     borderColor: "#554F4F",
                   }}
                 >
@@ -57,8 +57,8 @@ function Heatmap({ rows, columns, matrix, total }) {
                   className="fw-bold text-start"
                   style={{
                     minWidth: "120px",
+                    background: "#F2E6D8",
                     color: "#554F4F",
-                    background: "#EDD8B7",
                     borderColor: "#554F4F",
                   }}
                 >

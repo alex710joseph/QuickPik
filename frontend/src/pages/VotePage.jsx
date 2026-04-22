@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Container, Button, Alert, Badge } from "react-bootstrap";
 import MatrixGrid from "../components/MatrixGrid";
+import "./css/VotePage.css";
 
 export default function VotePage({ pollId, navigate }) {
   const [poll, setPoll] = useState(null);
@@ -57,7 +58,7 @@ export default function VotePage({ pollId, navigate }) {
       <div className="mb-4">
         <Button
           variant="link"
-          className="ps-0 mb-3 text-decoration-none"
+          className="ps-0 mb-3 text-decoration-none custom-link"
           onClick={() => navigate("home")}
         >
           ← Back to Home
@@ -70,7 +71,9 @@ export default function VotePage({ pollId, navigate }) {
           </Badge>
         </div>
 
-        {poll.description && <p className="text-muted fs-6">{poll.description}</p>}
+        {poll.description && (
+          <p className="text-muted fs-6">{poll.description}</p>
+        )}
       </div>
 
       {isClosed && (
@@ -91,7 +94,9 @@ export default function VotePage({ pollId, navigate }) {
 
       <div className="mb-4">
         <h4 className="fw-bold mb-3">Select Your Preferences</h4>
-        <p className="text-muted mb-3">Click cells to select your preferred combinations:</p>
+        <p className="text-muted mb-3">
+          Click cells to select your preferred combinations:
+        </p>
         <MatrixGrid
           rows={poll.rows}
           columns={poll.columns}
@@ -102,7 +107,12 @@ export default function VotePage({ pollId, navigate }) {
       </div>
 
       {!isClosed && (
-        <Button variant="primary" size="lg" className="w-100" onClick={handleSubmit}>
+        <Button
+          variant="primary"
+          size="lg"
+          className="w-100"
+          onClick={handleSubmit}
+        >
           {submitted ? "Update Response" : "Submit Response"}
         </Button>
       )}
