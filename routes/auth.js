@@ -24,7 +24,7 @@ passport.use(
 passport.serializeUser(function (user, cb) {
   process.nextTick(function () {
     cb(null, {
-      id: user._id.toString(),
+      id: user._id ? user._id.toString() : user.id,
       username: user.username,
       first_name: user.first_name,
       last_name: user.last_name,
