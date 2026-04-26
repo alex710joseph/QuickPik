@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Container, Button, Alert, Badge } from "react-bootstrap";
+import PropTypes from "prop-types";
 import MatrixGrid from "../components/MatrixGrid";
+import "../pages/css/VotePage.css";
 
-export default function VotePage({ pollId, navigate }) {
+function VotePage({ pollId, navigate }) {
   const [poll, setPoll] = useState(null);
   const [cells, setCells] = useState([]);
   const [submitted, setSubmitted] = useState(false);
@@ -55,7 +57,7 @@ export default function VotePage({ pollId, navigate }) {
     <Container className="py-4">
       <Button
         variant="link"
-        className="ps-0 mb-3"
+        className="ps-0 mb-3 text-decoration-none custom-link"
         onClick={() => navigate("home")}
       >
         ← Back to Home
@@ -103,3 +105,10 @@ export default function VotePage({ pollId, navigate }) {
     </Container>
   );
 }
+
+VotePage.propTypes = {
+  pollId: PropTypes.string.isRequired,
+  navigate: PropTypes.func.isRequired,
+};
+
+export default VotePage;

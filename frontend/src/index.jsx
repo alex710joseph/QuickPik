@@ -51,7 +51,7 @@ export default function IndexPage() {
   return (
     <div className="d-flex flex-column min-vh-100">
       {user && (
-        <Navbar bg="dark" variant="dark" className="px-3 mb-3">
+        <Navbar className="custom-navbar px-3 mb-3">
           <Navbar.Brand>QuickPik</Navbar.Brand>
           <Navbar.Text className="ms-auto me-3">
             Hi, {user.first_name}
@@ -78,35 +78,41 @@ export default function IndexPage() {
         </Navbar>
       )}
 
-      <div className="flex-grow-1">
-        {page === "login" && (
-          <LoginPage
-            onLogin={(u) => {
-              setUser(u);
-              setPage("home");
-            }}
-            onGoSignup={() => setPage("signup")}
-          />
-        )}
-        {page === "signup" && (
-          <SignupPage
-            onSignup={(u) => {
-              if (u) {
+      <main>
+        <div className="flex-grow-1">
+          {page === "login" && (
+            <LoginPage
+              onLogin={(u) => {
                 setUser(u);
                 setPage("home");
-              } else setPage("login");
-            }}
-          />
-        )}
-        {page === "home" && <HomePage navigate={navigate} user={user} />}
-        {page === "manage" && (
-          <ManagePollPage pollId={pageParam} navigate={navigate} user={user} />
-        )}
-        {page === "vote" && (
-          <VotePage pollId={pageParam} navigate={navigate} user={user} />
-        )}
-        {page === "help" && <HelpPage navigate={navigate} />}
-      </div>
+              }}
+              onGoSignup={() => setPage("signup")}
+            />
+          )}
+          {page === "signup" && (
+            <SignupPage
+              onSignup={(u) => {
+                if (u) {
+                  setUser(u);
+                  setPage("home");
+                } else setPage("login");
+              }}
+            />
+          )}
+          {page === "home" && <HomePage navigate={navigate} user={user} />}
+          {page === "manage" && (
+            <ManagePollPage
+              pollId={pageParam}
+              navigate={navigate}
+              user={user}
+            />
+          )}
+          {page === "vote" && (
+            <VotePage pollId={pageParam} navigate={navigate} user={user} />
+          )}
+          {page === "help" && <HelpPage navigate={navigate} />}
+        </div>
+      </main>
 
       {user && <Footer />}
     </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import {
   Container,
   Row,
@@ -77,76 +78,77 @@ export default function SignupPage({ onSignup }) {
   }
 
   return (
-    <Container style={{ minHeight: "100vh" }}>
-      <Row
-        className="justify-content-center align-items-center"
-        style={{ minHeight: "100vh" }}
-      >
+    <Container style={{ minHeight: "100vh" }} className="d-flex align-items-center">
+      <Row className="w-100 justify-content-center">
         <Col xs={12} sm={8} md={5} lg={4}>
-          <Card className="p-4 shadow-sm">
+          <Card className="p-4 shadow-sm custom-card">
             <h4 className="mb-4 text-center">Create an Account</h4>
             {error && (
-              <Alert variant="danger" className="py-2">
+              <Alert variant="danger" className="py-3 mb-4">
                 {error}
               </Alert>
             )}
 
-            <Row className="g-2 mb-3">
+            <Row className="g-3 mb-4">
               <Col>
-                <Form.Label style={{ fontSize: "0.85rem" }}>
-                  First Name
-                </Form.Label>
+                <Form.Label for="first_name" className="fw-500">First Name</Form.Label>
                 <Form.Control
-                  size="sm"
+                  id="first_name"
                   value={form.first_name}
                   onChange={(e) => updateFirstName(e.target.value)}
+                  placeholder="First name"
                 />
               </Col>
               <Col>
-                <Form.Label style={{ fontSize: "0.85rem" }}>
-                  Last Name
-                </Form.Label>
+                <Form.Label for="last_name" className="fw-500">Last Name</Form.Label>
                 <Form.Control
-                  size="sm"
+                  id="last_name"
                   value={form.last_name}
                   onChange={(e) => updateLastName(e.target.value)}
+                  placeholder="Last name"
                 />
               </Col>
             </Row>
 
-            <Form.Group className="mb-3">
-              <Form.Label style={{ fontSize: "0.85rem" }}>Username</Form.Label>
+            <Form.Group className="mb-4">
+              <Form.Label for="username" className="fw-500">
+                Username
+              </Form.Label>
               <Form.Control
-                size="sm"
+                id="username"
                 value={form.username}
                 onChange={(e) => updateUsername(e.target.value)}
+                placeholder="Choose a username"
               />
             </Form.Group>
 
             <Form.Group className="mb-4">
-              <Form.Label style={{ fontSize: "0.85rem" }}>Password</Form.Label>
+              <Form.Label for="password" className="fw-500">
+                Password
+              </Form.Label>
               <Form.Control
-                size="sm"
+                id="password"
                 type="password"
                 value={form.password}
                 onChange={(e) => updatePassword(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSignup()}
+                placeholder="At least 4 characters"
               />
             </Form.Group>
 
             <Button
               variant="primary"
-              className="w-100 mb-2"
+              className="w-100 py-2 fw-600 mb-3"
+              size="lg"
               onClick={handleSignup}
             >
               Sign Up
             </Button>
             <Button
-              variant="link"
+              variant="primary"
               className="w-100"
               onClick={() => onSignup(null)}
-            >
-              Already have an account? Log in
+            >Log in
             </Button>
           </Card>
         </Col>
@@ -154,3 +156,7 @@ export default function SignupPage({ onSignup }) {
     </Container>
   );
 }
+
+SignupPage.propTypes = {
+  onSignup: PropTypes.func.isRequired,
+};

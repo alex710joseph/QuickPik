@@ -1,0 +1,10 @@
+.custom-card.card {
+    background-color: #F2E6D8;
+    border-color: #F2E6D8;
+    border-radius: 15px;
+}
+
+.card-header.bg-custom-color {
+  background-color: #554F4F;
+  color: #EDD8B7;
+}

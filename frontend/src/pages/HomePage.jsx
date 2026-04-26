@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import {
   Container,
   Row,
@@ -11,6 +12,7 @@ import {
   Badge,
 } from "react-bootstrap";
 import PollForm from "../components/PollForm.jsx";
+import "./css/HomePage.css";
 
 export default function HomePage({ navigate }) {
   const [joinId, setJoinId] = useState("");
@@ -52,18 +54,19 @@ export default function HomePage({ navigate }) {
   }
 
   return (
-    <Container className="py-2">
+    <Container className="py-4">
+      <h2 className="mb-4 fw-bold">Dashboard</h2>
       <Row className="g-4">
         <Col md={6}>
-          <Card className="p-2 h-80 bg-transparent">
-            <h5 className="mb-3">Create a Poll</h5>
+          <Card className="p-4 custom-card">
+            <h3 className="mb-3">Create a Poll</h3>
             <PollForm onSubmit={handleCreatePoll} />
           </Card>
         </Col>
 
         <Col md={6}>
-          <Card className="p-4 h-80 bg-transparent">
-            <h5 className="mb-3">Participate in a Poll</h5>
+          <Card className="p-4 custom-card">
+            <h3 className="mb-3">Participate in a Poll</h3>
             <p className="text-muted">Enter the Poll ID shared with you:</p>
             <Form.Control
               className="mb-2"
@@ -76,34 +79,38 @@ export default function HomePage({ navigate }) {
                 {joinError}
               </Alert>
             )}
-            <Button variant="success" className="w-100" onClick={handleJoin}>
+            <Button
+              variant="primary"
+              className="mt-3 w-100"
+              onClick={handleJoin}
+            >
               Join Poll
             </Button>
           </Card>
         </Col>
       </Row>
 
-      <Row className="mt-2">
+      <Row className="mt-4">
         <Col className="text-center">
-          <Button variant="outline-primary" onClick={loadMyPolls}>
+          <Button variant="primary" onClick={loadMyPolls}>
             {showPolls ? "Refresh My Polls" : "View My Created Polls"}
           </Button>
         </Col>
       </Row>
 
       {showPolls && (
-        <Row className="mt-3">
+        <Row className="mt-4">
           <Col>
-            <h5>My Polls</h5>
+            <h4 className="mb-3 fw-bold">My Polls</h4>
             {myPolls.length === 0 ? (
               <p className="text-muted">You haven't created any polls yet.</p>
             ) : (
               <ListGroup>
                 {myPolls.map((p) => (
-                  <ListGroup.Item className="bg-light" key={p._id}>
+                  <ListGroup.Item className="custom-list-item" key={p._id}>
                     <Row className="align-items-center">
                       <Col>
-                        <strong>{p.title}</strong>
+                        <strong className="h6">{p.title}</strong>
                         <Badge
                           bg={p.status === "open" ? "success" : "secondary"}
                           className="ms-2"
@@ -117,7 +124,7 @@ export default function HomePage({ navigate }) {
                           <Col xs="auto">
                             <Button
                               size="sm"
-                              variant="outline-primary"
+                              variant="primary"
                               onClick={() => navigate("manage", p._id)}
                             >
                               View
@@ -126,7 +133,7 @@ export default function HomePage({ navigate }) {
                           <Col xs="auto">
                             <Button
                               size="sm"
-                              variant="outline-danger"
+                              variant="danger"
                               onClick={() => deletePoll(p._id)}
                             >
                               Delete
@@ -145,3 +152,7 @@ export default function HomePage({ navigate }) {
     </Container>
   );
 }
+
+HomePage.propTypes = {
+  navigate: PropTypes.func.isRequired,
+};

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { Container, Button, Alert, Badge } from "react-bootstrap";
 import MatrixGrid from "../components/MatrixGrid";
+import "./css/VotePage.css";
 
 export default function VotePage({ pollId, navigate }) {
   const [poll, setPoll] = useState(null);
@@ -53,53 +55,72 @@ export default function VotePage({ pollId, navigate }) {
 
   return (
     <Container className="py-4">
-      <Button
-        variant="link"
-        className="ps-0 mb-3"
-        onClick={() => navigate("home")}
-      >
-        ← Back to Home
-      </Button>
+      <div className="mb-4">
+        <Button
+          variant="link"
+          className="ps-0 mb-3 text-decoration-none custom-link"
+          onClick={() => navigate("home")}
+        >
+          ← Back to Home
+        </Button>
 
-      <h4 className="d-inline me-2">{poll.title}</h4>
-      <Badge bg={isClosed ? "secondary" : "success"} className="mb-2">
-        {poll.status}
-      </Badge>
+        <div className="d-flex align-items-center gap-3 mb-2">
+          <h2 className="mb-0 fw-bold">{poll.title}</h2>
+          <Badge bg={isClosed ? "secondary" : "success"} className="fs-6">
+            {poll.status}
+          </Badge>
+        </div>
 
-      {poll.description && <p className="text-muted">{poll.description}</p>}
+        {poll.description && (
+          <p className="text-muted fs-6">{poll.description}</p>
+        )}
+      </div>
 
       {isClosed && (
-        <Alert variant="secondary">
+        <Alert variant="secondary" className="mb-4">
           This poll is closed. You can view your response below.
         </Alert>
       )}
       {submitted && !isClosed && (
-        <Alert variant="info" className="py-2">
+        <Alert variant="info" className="py-3 mb-4">
           You've already voted. You can update your selections and resubmit.
         </Alert>
       )}
       {message && (
-        <Alert variant={msgVariant} className="py-2">
+        <Alert variant={msgVariant} className="py-3 mb-4">
           {message}
         </Alert>
       )}
 
-      <p className="text-muted">
-        Click cells to select your preferred combinations:
-      </p>
-      <MatrixGrid
-        rows={poll.rows}
-        columns={poll.columns}
-        cells={cells}
-        onChange={setCells}
-        disabled={isClosed}
-      />
+      <div className="mb-4">
+        <h4 className="fw-bold mb-3">Select Your Preferences</h4>
+        <p className="text-muted mb-3">
+          Click cells to select your preferred combinations:
+        </p>
+        <MatrixGrid
+          rows={poll.rows}
+          columns={poll.columns}
+          cells={cells}
+          onChange={setCells}
+          disabled={isClosed}
+        />
+      </div>
 
       {!isClosed && (
-        <Button variant="primary" className="mt-2" onClick={handleSubmit}>
+        <Button
+          variant="primary"
+          size="lg"
+          className="w-100"
+          onClick={handleSubmit}
+        >
           {submitted ? "Update Response" : "Submit Response"}
         </Button>
       )}
     </Container>
   );
 }
+
+VotePage.propTypes = {
+  pollId: PropTypes.string.isRequired,
+  navigate: PropTypes.func.isRequired,
+};

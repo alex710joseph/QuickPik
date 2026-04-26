@@ -15,12 +15,12 @@ In real-world group decisions — picking a restaurant, scheduling a meeting, pr
 
 | Resource | Link |
 |---|---|
-| GitHub Repository | https://github.com/alex710joseph/QuickPik |
-| Deployed Application | https://quickpik.onrender.com |
+| GitHub Repository | https://github.com/rajivphilip18/QuickPik |
+| Deployed Application | https://quickpik-03x3.onrender.com/ |
 | Youtube Walkthrough | https://www.youtube.com/watch?v=_WbQWqszsSw |
-| Design Document | https://docs.google.com/document/d/17_5AJiuvg-Nx1SQw5znsmwMXTlnKDfV8D4nitPJuhyg/edit?usp=sharing |
-| Slide Deck | https://docs.google.com/presentation/d/17xqsvmVP7bAJJ5PQ1Jmx8r3SgIDZGLjNGViHeShNe4w/edit?usp=sharing |
-
+| Design Document | https://docs.google.com/document/d/15PJ7hYPnCgbzrPUGMwUI_EL6xa5Egc4iQkD8LI8NncM/edit?tab=t.0 |
+| Slide Deck | https://docs.google.com/presentation/d/1x_tRo3nEKv04ydWoXUd_stG40ioY6O40FLqrr1yNKlI/edit?usp=sharing |
+| Usability, Design, Accessibility Iteration | https://youtu.be/fswuMBMzhmg |
 
 ---
 
@@ -169,6 +169,51 @@ All AI-generated code was reviewed, tested, and integrated by the team members.
 A python script was created that iterates over all the 1000 users generated via mockaroo and with each user, a submission record is created for a specified poll id. The code used can be found under /synthetic_data_generation
 
 ---
+
+## Usability Study
+The complete study from both team members merged into single pdf can be found at ./UsabilityStudy_QuickPik.pdf
+
+study recording links:
+1. https://www.youtube.com/watch?v=WDDjyAOSEk4
+2. https://www.youtube.com/watch?v=wx4p7cg92-I
+3. https://www.youtube.com/watch?v=b6nVG5Vfk50
+4. https://www.youtube.com/watch?v=6xRbWv7X-io&feature=youtu.be
+5. https://www.youtube.com/watch?v=ZJy4GoG4sAI
+6. https://www.youtube.com/watch?v=DCT-N3ynN-0
+
+## Accessiblility Tests
+Ran axe scans for all pages of the application and fixed all issues that were found such as:
+1. color contrast of footer text not complying with wcag standards 
+2. aria-label missing for MatrixGrid component
+3. form labels missing for input fields in SignupPage.jsx, LoginPage.jsx and PollForm.jsx
+4. color contrast of copy link and copy button not complying with wcag standards
+
+Generated lighthouse report and fixed the following issues:
+1. main landmark not found - fixed by putting the main content within the `<main><\main>` tags
+
+Axe scans results on all pages after fixing all of the above listed issues:
+![alt text](<usability_report_screenshots/Screenshot 2026-04-21 at 4.09.03 AM.png>)
+
+![alt text](<usability_report_screenshots/Screenshot 2026-04-21 at 4.07.42 AM.png>)
+
+![alt text](<usability_report_screenshots/Screenshot 2026-04-21 at 4.09.03 AM.png>)
+
+![alt text](<usability_report_screenshots/Screenshot 2026-04-21 at 4.09.25 AM.png>)
+
+Lighthouse report after fixing all of the above listed issues:
+![alt text](<usability_report_screenshots/Screenshot 2026-04-21 at 3.54.32 AM.png>)
+
+![alt text](<usability_report_screenshots/Screenshot 2026-04-21 at 4.07.42 AM.png>)
+
+## Color Palette
+We used the Texoma Neutral Palette from color.adobe.com (https://color.adobe.com/Texoma%20Neutral%20Palette-color-theme-8b389284-05c2-4257-8076-4124d7303845). The navbar and footer were colored with #554F4F and the body was colored with the complimentary #EDD8B7:
+
+![alt text](color_palette_and_font_pairing/color_palette.png)
+
+## Typography
+We used the Cardo font family for all the header tags and its matching font family Roboto Serif for the body elements. The font pair was selected from fontpair.co:
+
+![alt text](color_palette_and_font_pairing/font_pair.png)
 
 ## Team
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import {
   Container,
   Row,
@@ -9,6 +10,7 @@ import {
   Alert,
 } from "react-bootstrap";
 import Heatmap from "../components/Heatmap";
+import "./css/ManagePollPage.css";
 
 export default function ManagePollPage({ pollId, navigate }) {
   const [poll, setPoll] = useState(null);
@@ -59,35 +61,38 @@ export default function ManagePollPage({ pollId, navigate }) {
 
   return (
     <Container className="py-4">
-      <Button
-        variant="link"
-        className="ps-0 mb-3"
-        onClick={() => navigate("home")}
-      >
-        ← Back to Home
-      </Button>
+      <div className="mb-4">
+        <Button
+          variant="link"
+          className="ps-0 mb-3 text-decoration-none custom-link"
+          onClick={() => navigate("home")}
+        >
+          ← Back to Home
+        </Button>
 
-      <Row className="align-items-center mb-1">
-        <Col>
-          <h4 className="mb-0 d-inline me-2">{poll.title}</h4>
-          <Badge bg={poll.status === "open" ? "success" : "secondary"}>
+        <div className="d-flex align-items-center gap-3 mb-3">
+          <h2 className="mb-0 fw-bold">{poll.title}</h2>
+          <Badge
+            bg={poll.status === "open" ? "success" : "secondary"}
+            className="fs-6"
+          >
             {poll.status}
           </Badge>
-        </Col>
-      </Row>
+        </div>
 
-      {poll.description && <p className="text-muted">{poll.description}</p>}
+        {poll.description && <p className="text-muted">{poll.description}</p>}
+      </div>
 
-      <Card bg="light" className="p-3 mb-4">
+      <Card className="p-3 mb-4 custom-card">
         <Row className="align-items-center g-2">
           <Col xs="auto">
-            <span className="text-muted small">Share this Poll URL:</span>
+            <span className="text-muted fw-500">Share this Poll:</span>
           </Col>
           <Col>
-            <code>{`${window.location.origin}/poll/${pollId}/vote`}</code>
+            <code className="text-primary-emphasis">{`${window.location.origin}/poll/${pollId}/vote`}</code>
           </Col>
           <Col xs="auto">
-            <Button variant="outline-secondary" size="sm" onClick={copyLink}>
+            <Button variant="primary" size="sm" onClick={copyLink}>
               {copied ? "Copied!" : "Copy"}
             </Button>
           </Col>
@@ -95,24 +100,24 @@ export default function ManagePollPage({ pollId, navigate }) {
       </Card>
 
       {poll.status === "open" && (
-        <Button variant="warning" className="mb-4" onClick={closePoll}>
+        <Button variant="primary" className="mb-4 fw-600" onClick={closePoll}>
           Close Poll
         </Button>
       )}
 
       {heatmapData && getTopCells().length > 0 && (
-        <div className="mb-3">
-          <h6 className="mb-2">
+        <div className="mb-4">
+          <h5 className="fw-bold mb-3">
             Top Choice{getTopCells().length > 1 ? "s" : ""}
-          </h6>
-          <Row className="g-2">
+          </h5>
+          <Row className="g-3">
             {getTopCells().map((cell, i) => (
               <Col xs="auto" key={i}>
-                <Card className="px-3 py-2 text-center border-success">
-                  <div className="fw-semibold">
+                <Card className="px-4 py-3 text-center border-success border-2 shadow-sm">
+                  <div className="fw-semibold fs-6">
                     {cell.row} × {cell.col}
                   </div>
-                  <div className="text-muted small">
+                  <div className="text-muted small mt-1">
                     {cell.count} vote{cell.count !== 1 ? "s" : ""}
                   </div>
                 </Card>
@@ -122,17 +127,24 @@ export default function ManagePollPage({ pollId, navigate }) {
         </div>
       )}
 
-      <h5>Results Heatmap</h5>
-      {heatmapData ? (
-        <Heatmap
-          rows={poll.rows}
-          columns={poll.columns}
-          matrix={heatmapData.matrix}
-          total={heatmapData.total}
-        />
-      ) : (
-        <p className="text-muted">Loading results...</p>
-      )}
+      <div>
+        <h4 className="fw-bold mb-3">Results Heatmap</h4>
+        {heatmapData ? (
+          <Heatmap
+            rows={poll.rows}
+            columns={poll.columns}
+            matrix={heatmapData.matrix}
+            total={heatmapData.total}
+          />
+        ) : (
+          <p className="text-muted">Loading results...</p>
+        )}
+      </div>
     </Container>
   );
 }
+
+ManagePollPage.propTypes = {
+  pollId: PropTypes.string.isRequired,
+  navigate: PropTypes.func.isRequired,
+};
